@@ -1,3 +1,6 @@
+## 0.0.4
+* Fixed code formatting issues.
+
 ## 0.0.3
 * Fixed README image link.
 
