@@ -21,7 +21,7 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  simple_clean_navbar: ^0.0.4
+  simple_clean_navbar: ^0.0.5
 ```
 
 ## Usage

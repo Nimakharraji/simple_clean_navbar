@@ -23,9 +23,10 @@ class SimpleCleanNavBar extends StatelessWidget {
     this.backgroundDiscColor = const Color(0xFFF5F5F5),
     this.isDarkMode = false,
     this.height = 65.0,
-  }) : assert(items.length >= 2 && items.length <= 5,
-            "\n\n🛑 Error in SimpleCleanNavBar: items.length must be between 2 and 5.\nStandard bottom navigation bars usually have 3 to 5 items.\n");
-  // این خط بالا چک میکنه که تعداد آیتم‌ها استاندارد باشه
+  }) : assert(
+          items.length >= 2 && items.length <= 5,
+          "\n\n🛑 Error in SimpleCleanNavBar: items.length must be between 2 and 5.\nStandard bottom navigation bars usually have 3 to 5 items.\n",
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,8 @@ class SimpleCleanNavBar extends StatelessWidget {
         ? []
         : [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              // ✅ FIX 1: Changed withOpacity to withValues
+              color: Colors.black.withValues(alpha: 0.08),
               blurRadius: 20,
               offset: const Offset(0, -5),
             ),
@@ -106,7 +108,8 @@ class _NavItemBuilder extends StatelessWidget {
                 (isSelected && !isDarkMode && discColor != Colors.transparent)
                     ? [
                         BoxShadow(
-                          color: discColor.withOpacity(0.3),
+                          // ✅ FIX 2: Changed withOpacity to withValues
+                          color: discColor.withValues(alpha: 0.3),
                           blurRadius: 5,
                         )
                       ]
@@ -114,15 +117,15 @@ class _NavItemBuilder extends StatelessWidget {
           ),
           child: isSelected && item.activeIcon != null
               ? _ColorFilterWrapper(
-                  child: item.activeIcon!, color: selectedColor)
+                  color: selectedColor, child: item.activeIcon!)
               : _ColorFilterWrapper(
-                  child: item.icon,
-                  color: isSelected ? selectedColor : unselectedColor),
+                  color: isSelected ? selectedColor : unselectedColor,
+                  child: item.icon),
         ),
         const SizedBox(height: 4),
         Text(
           item.label,
-          maxLines: 1, // جلوگیری از دو خطی شدن متن
+          maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontSize: 12,

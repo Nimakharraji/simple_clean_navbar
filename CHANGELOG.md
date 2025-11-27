@@ -1,3 +1,6 @@
+## 0.0.5
+* Replaced deprecated `withOpacity` with `withValues` for latest Flutter support.
+
 ## 0.0.4
 * Fixed code formatting issues.
 
