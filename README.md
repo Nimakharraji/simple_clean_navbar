@@ -25,12 +25,13 @@ dependencies:
 ```
 
 ## Usage
-```
 First, import the package:
+```
 import 'package:simple_clean_navbar/simple_clean_navbar.dart';
 ```
 
 ## Then, use SimpleCleanNavBar in your Scaffold:
+
 ```
 class MyApp extends StatefulWidget {
   @override
@@ -69,10 +70,12 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
 ```
 
 ## Additional Customization
 You can fully customize colors and behavior to match your brand:
+
 ```
 SimpleCleanNavBar(
   // ... required params (items, onTap, currentIndex)
@@ -81,10 +84,9 @@ SimpleCleanNavBar(
   selectedColor: Colors.purple,
   unselectedColor: Colors.grey,
   backgroundDiscColor: Colors.purple.withOpacity(0.1),
-```
   
   // Set this based on your app's theme status to remove shadows in dark mode
   isDarkMode: Theme.of(context).brightness == Brightness.dark, 
 )
-
+```
 
