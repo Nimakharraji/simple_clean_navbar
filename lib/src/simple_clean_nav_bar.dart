@@ -23,9 +23,9 @@ class SimpleCleanNavBar extends StatelessWidget {
     this.backgroundDiscColor = const Color(0xFFF5F5F5),
     this.isDarkMode = false,
     this.height = 65.0,
-  }) : assert(items.length >= 2 && items.length <= 5, 
-       "\n\n🛑 Error in SimpleCleanNavBar: items.length must be between 2 and 5.\nStandard bottom navigation bars usually have 3 to 5 items.\n"); 
-       // این خط بالا چک میکنه که تعداد آیتم‌ها استاندارد باشه
+  }) : assert(items.length >= 2 && items.length <= 5,
+            "\n\n🛑 Error in SimpleCleanNavBar: items.length must be between 2 and 5.\nStandard bottom navigation bars usually have 3 to 5 items.\n");
+  // این خط بالا چک میکنه که تعداد آیتم‌ها استاندارد باشه
 
   @override
   Widget build(BuildContext context) {
@@ -102,18 +102,22 @@ class _NavItemBuilder extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: isSelected ? discColor : Colors.transparent,
-            boxShadow: (isSelected && !isDarkMode && discColor != Colors.transparent)
-                ? [
-                    BoxShadow(
-                      color: discColor.withOpacity(0.3),
-                      blurRadius: 5,
-                    )
-                  ]
-                : [],
+            boxShadow:
+                (isSelected && !isDarkMode && discColor != Colors.transparent)
+                    ? [
+                        BoxShadow(
+                          color: discColor.withOpacity(0.3),
+                          blurRadius: 5,
+                        )
+                      ]
+                    : [],
           ),
           child: isSelected && item.activeIcon != null
-              ? _ColorFilterWrapper(child: item.activeIcon!, color: selectedColor)
-              : _ColorFilterWrapper(child: item.icon, color: isSelected ? selectedColor : unselectedColor),
+              ? _ColorFilterWrapper(
+                  child: item.activeIcon!, color: selectedColor)
+              : _ColorFilterWrapper(
+                  child: item.icon,
+                  color: isSelected ? selectedColor : unselectedColor),
         ),
         const SizedBox(height: 4),
         Text(
