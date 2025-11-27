@@ -1,3 +1,5 @@
+[![pub package](https://img.shields.io/pub/v/simple_clean_navbar.svg)](https://pub.dev/packages/simple_clean_navbar)
+
 # Simple Clean NavBar
 
 A customizable, animated, and clean bottom navigation bar for Flutter apps.
@@ -20,13 +22,17 @@ Add this to your `pubspec.yaml`:
 ```yaml
 dependencies:
   simple_clean_navbar: ^0.0.1
+```
 
-  Usage
+## Usage
 First, import the package:
+```
 import 'package:simple_clean_navbar/simple_clean_navbar.dart';
+```
 
+## Then, use SimpleCleanNavBar in your Scaffold:
 
-Then, use SimpleCleanNavBar in your Scaffold:
+```
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -65,9 +71,12 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+```
 
-Additional Customization
+## Additional Customization
 You can fully customize colors and behavior to match your brand:
+
+```
 SimpleCleanNavBar(
   // ... required params (items, onTap, currentIndex)
   
@@ -79,5 +88,5 @@ SimpleCleanNavBar(
   // Set this based on your app's theme status to remove shadows in dark mode
   isDarkMode: Theme.of(context).brightness == Brightness.dark, 
 )
-
+```
 
