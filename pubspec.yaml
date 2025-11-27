@@ -1,0 +1,20 @@
+name: simple_clean_navbar
+description: A clean, animated, and customizable bottom navigation bar for Flutter. Supports RTL, Dark Mode, and custom widgets with a floating disk effect.
+version: 0.0.1
+homepage: https://github.com/Nimakharraji/simple_clean_navbar
+repository: https://github.com/Nimakharraji/simple_clean_navbar
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:

@@ -1,0 +1,27 @@
+name: example
+description: "A demo application for simple_clean_navbar."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # آیکون‌های استاندارد iOS
+  cupertino_icons: ^1.0.8
+
+  # ✅✅✅ بخش مهم: اتصال پکیج خودت به پروژه تست
+  simple_clean_navbar:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
