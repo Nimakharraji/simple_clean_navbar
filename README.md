@@ -1,3 +1,5 @@
+[![pub package](https://img.shields.io/pub/v/simple_clean_navbar.svg)](https://pub.dev/packages/simple_clean_navbar)
+
 # Simple Clean NavBar
 
 A customizable, animated, and clean bottom navigation bar for Flutter apps.
