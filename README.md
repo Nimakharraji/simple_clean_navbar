@@ -5,7 +5,7 @@
 A customizable, animated, and clean bottom navigation bar for Flutter apps.
 It features a floating disk effect behind the selected icon, fully supports **Dark Mode**, and automatically adapts to **RTL** languages (like Persian/Arabic).
 
-![Demo Preview](https://via.placeholder.com/600x200?text=Your+App+Screenshot+Here)
+![Demo Preview](https://raw.githubusercontent.com/Nimakharraji/simple_clean_navbar/86ed214f6aa6a726e70ec4583fba0a46342227e8/ScreenShots/unnamed.jpg)
 
 ## Features
 

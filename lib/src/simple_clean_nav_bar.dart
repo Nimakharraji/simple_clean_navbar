@@ -1,35 +1,15 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'nav_bar_item.dart';
 
-/// A customizable bottom navigation bar with a floating disk effect.
 class SimpleCleanNavBar extends StatelessWidget {
-  /// The list of items to display in the navigation bar.
   final List<SimpleNavBarItem> items;
-
-  /// The index of the currently selected item.
   final int currentIndex;
-
-  /// Callback function triggered when an item is tapped.
   final Function(int) onTap;
-
-  /// Background color of the navigation bar.
   final Color backgroundColor;
-
-  /// Color of the selected item's icon and label.
   final Color selectedColor;
-
-  /// Color of the unselected items.
   final Color unselectedColor;
-
-  /// Color of the floating disk behind the selected icon.
   final Color backgroundDiscColor;
-
-  /// If true, shadows will be removed to fit dark themes better.
   final bool isDarkMode;
-
-  /// Height of the navigation bar. Default is 65.0.
   final double height;
 
   const SimpleCleanNavBar({
@@ -43,11 +23,12 @@ class SimpleCleanNavBar extends StatelessWidget {
     this.backgroundDiscColor = const Color(0xFFF5F5F5),
     this.isDarkMode = false,
     this.height = 65.0,
-  });
+  }) : assert(items.length >= 2 && items.length <= 5, 
+       "\n\n🛑 Error in SimpleCleanNavBar: items.length must be between 2 and 5.\nStandard bottom navigation bars usually have 3 to 5 items.\n"); 
+       // این خط بالا چک میکنه که تعداد آیتم‌ها استاندارد باشه
 
   @override
   Widget build(BuildContext context) {
-    // Logic: Remove shadow in dark mode for a cleaner look
     final List<BoxShadow> navBarShadow = isDarkMode
         ? []
         : [
@@ -67,7 +48,6 @@ class SimpleCleanNavBar extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        // The direction (LTR/RTL) is automatically inherited from the parent context.
         children: items.asMap().entries.map((entry) {
           final int index = entry.key;
           final SimpleNavBarItem item = entry.value;
@@ -93,7 +73,6 @@ class SimpleCleanNavBar extends StatelessWidget {
   }
 }
 
-/// A private helper widget to build each navigation item.
 class _NavItemBuilder extends StatelessWidget {
   final SimpleNavBarItem item;
   final bool isSelected;
@@ -123,28 +102,26 @@ class _NavItemBuilder extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: isSelected ? discColor : Colors.transparent,
-            boxShadow:
-                (isSelected && !isDarkMode && discColor != Colors.transparent)
-                ? [BoxShadow(color: discColor.withOpacity(0.3), blurRadius: 5)]
+            boxShadow: (isSelected && !isDarkMode && discColor != Colors.transparent)
+                ? [
+                    BoxShadow(
+                      color: discColor.withOpacity(0.3),
+                      blurRadius: 5,
+                    )
+                  ]
                 : [],
           ),
           child: isSelected && item.activeIcon != null
-              ? _ColorFilterWrapper(
-                  color: selectedColor,
-                  child: item.activeIcon!,
-                )
-              : _ColorFilterWrapper(
-                  color: isSelected ? selectedColor : unselectedColor,
-                  child: item.icon,
-                ),
+              ? _ColorFilterWrapper(child: item.activeIcon!, color: selectedColor)
+              : _ColorFilterWrapper(child: item.icon, color: isSelected ? selectedColor : unselectedColor),
         ),
         const SizedBox(height: 4),
-        // ✅✅✅ تغییرات فونت اینجاست
         Text(
           item.label,
+          maxLines: 1, // جلوگیری از دو خطی شدن متن
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 12, // کمی سایز رو بزرگتر کردم که خواناتر بشه
-            // اگر انتخاب شده بود خیلی بولد، اگر نبود کمی بولد (Medium)
+            fontSize: 12,
             fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
             color: isSelected ? selectedColor : unselectedColor,
           ),
@@ -154,7 +131,6 @@ class _NavItemBuilder extends StatelessWidget {
   }
 }
 
-/// Helper to apply color to SVG or Icon widgets if possible
 class _ColorFilterWrapper extends StatelessWidget {
   final Widget child;
   final Color color;
@@ -163,8 +139,6 @@ class _ColorFilterWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Basic ColorFilter usage could be complex for generic Widgets.
-    // For a simple Icon(), color property works. For others, we might need IconTheme.
     return IconTheme(
       data: IconThemeData(color: color, size: 24),
       child: child,
