@@ -6,10 +6,10 @@ repository: https://github.com/Nimakharraji/simple_clean_navbar
 
 topics:
   - navbar
-  - bottom_navigation
+  - bottom-navigation
   - ui
   - animation
-  - custom_widget
+  - custom-widget
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
