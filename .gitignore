@@ -30,10 +30,10 @@ migrate_working_dir/
 .pub/
 /build/
 
-# ✅ مخصوص پکیج‌ها: فایل قفل ورژن‌ها نباید در پکیج اصلی آپلود شود
+
 pubspec.lock
 
-# Android related (برای پوشه example)
+# Android related (example)
 **/android/local.properties
 **/android/.gradle/
 **/android/captures/
@@ -43,7 +43,7 @@ pubspec.lock
 **/android/app/build/
 **/android/**/generated/
 
-# iOS/macOS related (برای پوشه example)
+# iOS/macOS related (example)
 **/ios/Flutter/.last_build_id
 **/ios/Flutter/Generated.xcconfig
 **/ios/Flutter/flutter_export_environment.sh

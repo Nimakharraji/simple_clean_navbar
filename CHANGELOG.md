@@ -1,3 +1,7 @@
+## 0.0.6
+* Added `topics` to `pubspec.yaml` for better discoverability.
+* Removed deprecated `author` field.
+
 ## 0.0.5
 * Replaced deprecated `withOpacity` with `withValues` for latest Flutter support.
 
@@ -12,7 +16,6 @@
 * Updated documentation images.
 
 ## 0.0.1
-
 * Initial release.
 * Added custom floating disk animation.
 * Added Dark/Light mode support.
