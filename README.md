@@ -8,7 +8,7 @@ Version 1.0.0 introduces **Floating Mode**, **Side Rail support**, **3 Animation
 
 Designed to look clean on phones, tablets, and the web, automatically handling **RTL** (Persian/Arabic) and **Dark Mode**.
 
-![Demo Preview](https://raw.githubusercontent.com/Nimakharraji/simple_clean_navbar/main/ScreenShots/preview_v1.jpg)
+![Demo Preview](https://raw.githubusercontent.com/Nimakharraji/simple_clean_navbar/ScreenShots/preview.jpg)
 
 
 ##✨ Features
