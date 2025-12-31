@@ -1,3 +1,19 @@
+## 7. فایل `CHANGELOG.md`
+برای ثبت این تغییرات عظیم.
+
+```markdown
+## 1.0.0
+🚀 **Major Release - The Ultimate Update!**
+
+* **New Feature:** Added `isSideRail` support for vertical navigation (Side Rail).
+* **New Feature:** Added `isFloating` mode for a modern, floating design with shadows.
+* **New Feature:** Added `SimpleNavAnimType` with 3 animations: `circle`, `zoom`, `float`.
+* **New Feature:** Added `SimpleNavTextMode` to control text visibility (`alwaysShow`, `onSelect`, `neverShow`).
+* **New Feature:** Added `updateSystemNavBar` to automatically style the Android system navigation bar (Immersive mode).
+* **Improvement:** Complete code refactor for better performance and maintainability.
+* **Breaking Change:** `SimpleNavBarItem` now takes `IconData` instead of `Widget` for better animation support.
+* **Breaking Change:** `activeIcon` removed (handled by animations now).
+
 ## 0.0.6
 * Added `topics` to `pubspec.yaml` for better discoverability.
 * Removed deprecated `author` field.

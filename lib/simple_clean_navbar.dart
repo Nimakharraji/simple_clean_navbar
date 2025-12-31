@@ -1,5 +1,5 @@
 library simple_clean_navbar;
 
-// با این دستورها، فایل‌های داخل src رو به دنیای بیرون معرفی می‌کنیم
-export 'src/nav_bar_item.dart';
+export 'src/models/nav_bar_item.dart';
+export 'enums/navbar_enums.dart';
 export 'src/simple_clean_nav_bar.dart';

@@ -1,4 +1,5 @@
-# Miscellaneous
+Miscellaneous
+
 *.class
 *.log
 *.pyc
@@ -10,18 +11,21 @@
 .svn/
 migrate_working_dir/
 
-# IntelliJ / Android Studio
+IntelliJ / Android Studio
+
 *.iml
 *.ipr
 *.iws
 .idea/
 
-# Visual Studio Code
+Visual Studio Code
+
 .vscode/
 .vscode/launch.json
 .vscode/tasks.json
 
-# Flutter/Dart/Pub
+Flutter/Dart/Pub
+
 **/doc/api/
 .dart_tool/
 .flutter-plugins
@@ -29,11 +33,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-
-
 pubspec.lock
 
-# Android related (example)
+Android related
+
 **/android/local.properties
 **/android/.gradle/
 **/android/captures/
@@ -41,9 +44,10 @@ pubspec.lock
 **/android/gradlew.bat
 **/android/build/
 **/android/app/build/
-**/android/**/generated/
+/android//generated/
 
-# iOS/macOS related (example)
+iOS/macOS related
+
 **/ios/Flutter/.last_build_id
 **/ios/Flutter/Generated.xcconfig
 **/ios/Flutter/flutter_export_environment.sh
@@ -51,19 +55,24 @@ pubspec.lock
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/
 **/ios/ServiceDefinitions.json
-**/ios/Runner/GeneratedPluginRegistrant.*
+*/ios/Runner/GeneratedPluginRegistrant.
 **/ios/Pods/
 **/ios/.symlinks/
 **/macos/Flutter/ephemeral/
 
-# Web related
+Web related
+
 lib/generated_plugin_registrant.dart
 
-# Windows related
+Windows related
+
 **/windows/flutter/ephemeral/
 
-# Linux related
+Linux related
+
 **/linux/flutter/ephemeral/
 
-# Exceptions
+Exceptions (Files that SHOULD be version controlled)
+
 !**/android/app/src/main/AndroidManifest.xml
+!lib/src/models/nav_bar_item.dart!

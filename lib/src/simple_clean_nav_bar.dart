@@ -1,154 +1,238 @@
 import 'package:flutter/material.dart';
-import 'nav_bar_item.dart';
+import 'package:flutter/services.dart';
+import '../simple_clean_navbar.dart';
+import '../widgets/navbar_item_widget.dart';
 
 class SimpleCleanNavBar extends StatelessWidget {
+  /// List of items to display in the navigation bar.
   final List<SimpleNavBarItem> items;
+
+  /// Current selected index.
   final int currentIndex;
+
+  /// Callback when an item is tapped.
   final Function(int) onTap;
-  final Color backgroundColor;
+
+  /// Active color for icon and text.
   final Color selectedColor;
+
+  /// Inactive color for icon and text.
   final Color unselectedColor;
-  final Color backgroundDiscColor;
-  final bool isDarkMode;
-  final double height;
+
+  /// Background color of the navigation bar.
+  final Color backgroundColor;
+
+  /// Color of the floating disc/circle behind the icon.
+  final Color? discColor;
+
+  /// If true, the navbar floats above the content with rounded corners and shadow.
+  final bool isFloating;
+
+  /// If true, arranges items vertically (Side Navigation Rail).
+  final bool isSideRail;
+
+  /// Only used if [isSideRail] is true. If true, aligns to left, otherwise right.
+  final bool isRailOnLeft;
+
+  /// Animation type for item selection.
+  final SimpleNavAnimType animationType;
+
+  /// Text display mode.
+  final SimpleNavTextMode textMode;
+
+  /// If not null, overrides the system navigation bar color (bottom of screen).
+  /// This provides the "Immersive" experience.
+  final bool updateSystemNavBar;
 
   const SimpleCleanNavBar({
     super.key,
     required this.items,
     required this.currentIndex,
     required this.onTap,
-    this.backgroundColor = Colors.white,
     this.selectedColor = const Color(0xFF2C3E50),
     this.unselectedColor = Colors.grey,
-    this.backgroundDiscColor = const Color(0xFFF5F5F5),
-    this.isDarkMode = false,
-    this.height = 65.0,
-  }) : assert(
-          items.length >= 2 && items.length <= 5,
-          "\n\n🛑 Error in SimpleCleanNavBar: items.length must be between 2 and 5.\nStandard bottom navigation bars usually have 3 to 5 items.\n",
-        );
+    this.backgroundColor = Colors.white,
+    this.discColor,
+    this.isFloating = false,
+    this.isSideRail = false,
+    this.isRailOnLeft = true,
+    this.animationType = SimpleNavAnimType.circle,
+    this.textMode = SimpleNavTextMode.onSelect,
+    this.updateSystemNavBar = true,
+  }) : assert(items.length >= 2 && items.length <= 5,
+            "Items must be between 2 and 5");
 
   @override
   Widget build(BuildContext context) {
-    final List<BoxShadow> navBarShadow = isDarkMode
-        ? []
+    // Detect Brightness to adjust defaults if needed
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Auto-handle System UI Color based on the fixed logic
+    if (updateSystemNavBar) {
+      _updateSystemUi(context, isDark);
+    }
+
+    // Background color logic (transparency for floating)
+    final navBgColor =
+        backgroundColor.withValues(alpha: isFloating ? 0.98 : 1.0);
+
+    // Shadow logic: Only show shadow if floating
+    final shadow = (!isFloating)
+        ? <BoxShadow>[]
         : [
             BoxShadow(
-              // ✅ FIX 1: Changed withOpacity to withValues
-              color: Colors.black.withValues(alpha: 0.08),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 20,
-              offset: const Offset(0, -5),
+              offset: const Offset(0, 5),
             ),
           ];
 
-    return Container(
-      height: height,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-        boxShadow: navBarShadow,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: items.asMap().entries.map((entry) {
-          final int index = entry.key;
-          final SimpleNavBarItem item = entry.value;
-          final bool isSelected = currentIndex == index;
+    // Alignment logic
+    Alignment alignment;
+    if (isSideRail) {
+      alignment = isRailOnLeft ? Alignment.centerLeft : Alignment.centerRight;
+    } else {
+      alignment = Alignment.bottomCenter;
+    }
 
-          return Expanded(
-            child: GestureDetector(
-              onTap: () => onTap(index),
-              behavior: HitTestBehavior.opaque,
-              child: _NavItemBuilder(
-                item: item,
-                isSelected: isSelected,
-                selectedColor: item.selectedColor ?? selectedColor,
-                unselectedColor: unselectedColor,
-                discColor: backgroundDiscColor,
-                isDarkMode: isDarkMode,
-              ),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
+    // Margin logic
+    EdgeInsets margin;
+    if (isSideRail) {
+      margin = isFloating ? const EdgeInsets.all(16) : EdgeInsets.zero;
+    } else {
+      margin = isFloating
+          ? const EdgeInsets.fromLTRB(20, 0, 20, 20)
+          : EdgeInsets.zero;
+    }
 
-class _NavItemBuilder extends StatelessWidget {
-  final SimpleNavBarItem item;
-  final bool isSelected;
-  final Color selectedColor;
-  final Color unselectedColor;
-  final Color discColor;
-  final bool isDarkMode;
+    // Radius logic
+    BorderRadius radius;
+    if (isFloating) {
+      radius = BorderRadius.circular(35);
+    } else {
+      radius = BorderRadius.zero;
+    }
 
-  const _NavItemBuilder({
-    required this.item,
-    required this.isSelected,
-    required this.selectedColor,
-    required this.unselectedColor,
-    required this.discColor,
-    required this.isDarkMode,
-  });
+    // Size logic (Critical Fix for Layout Bugs)
+    final screenSize = MediaQuery.of(context).size;
+    double? width;
+    double? height;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
+    if (isSideRail) {
+      // Vertical Mode
+      width = isFloating ? 80 : 90;
+      height = isFloating ? 400 : screenSize.height;
+    } else {
+      // Horizontal Mode
+      if (isFloating) {
+        // If floating, limit width in landscape, else screen width minus margins
+        final isLandscape =
+            MediaQuery.of(context).orientation == Orientation.landscape;
+        width = isLandscape ? 400 : screenSize.width - 40;
+      } else {
+        width = screenSize.width;
+      }
+      height = 70;
+    }
+
+    return AnimatedAlign(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      alignment: alignment,
+      child: Padding(
+        padding: margin,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          padding: const EdgeInsets.all(8),
+          width: width,
+          height: height,
+          constraints: (isSideRail && isFloating)
+              ? const BoxConstraints(maxHeight: 400)
+              : null,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: isSelected ? discColor : Colors.transparent,
-            boxShadow:
-                (isSelected && !isDarkMode && discColor != Colors.transparent)
-                    ? [
-                        BoxShadow(
-                          // ✅ FIX 2: Changed withOpacity to withValues
-                          color: discColor.withValues(alpha: 0.3),
-                          blurRadius: 5,
-                        )
-                      ]
-                    : [],
+            color: navBgColor,
+            borderRadius: radius,
+            boxShadow: shadow,
           ),
-          child: isSelected && item.activeIcon != null
-              ? _ColorFilterWrapper(
-                  color: selectedColor, child: item.activeIcon!)
-              : _ColorFilterWrapper(
-                  color: isSelected ? selectedColor : unselectedColor,
-                  child: item.icon),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          item.label,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
-            color: isSelected ? selectedColor : unselectedColor,
+          child: ClipRRect(
+            borderRadius: radius,
+            child: isSideRail
+                // Vertical Layout: Center items to avoid spacing issues
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: items.asMap().entries.map((entry) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _buildItem(entry.key, entry.value),
+                      );
+                    }).toList(),
+                  )
+                // Horizontal Layout
+                : Row(
+                    // Fixed: Spread evenly. Floating: Spread evenly within constraints.
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: items.asMap().entries.map((entry) {
+                      return Expanded(
+                        child: _buildItem(entry.key, entry.value),
+                      );
+                    }).toList(),
+                  ),
           ),
         ),
-      ],
+      ),
     );
   }
-}
 
-class _ColorFilterWrapper extends StatelessWidget {
-  final Widget child;
-  final Color color;
+  Widget _buildItem(int index, SimpleNavBarItem item) {
+    return GestureDetector(
+      onTap: () => onTap(index),
+      behavior: HitTestBehavior.opaque,
+      child: Center(
+        child: CompactNavItem(
+          item: item,
+          isSelected: currentIndex == index,
+          selectedColor: selectedColor,
+          unselectedColor: unselectedColor,
+          discColor: discColor ?? selectedColor.withValues(alpha: 0.1),
+          animationType: animationType,
+          textMode: textMode,
+        ),
+      ),
+    );
+  }
 
-  const _ColorFilterWrapper({required this.child, required this.color});
+  void _updateSystemUi(BuildContext context, bool isDark) {
+    Color systemBarColor;
+    Brightness systemIconBrightness;
 
-  @override
-  Widget build(BuildContext context) {
-    return IconTheme(
-      data: IconThemeData(color: color, size: 24),
-      child: child,
+    // Detect Scaffold background color approximately (or assume based on theme)
+    final scaffoldColor =
+        isDark ? const Color(0xFF121212) : const Color(0xFFF0F2F5);
+
+    if (isSideRail) {
+      systemBarColor = scaffoldColor;
+    } else if (isFloating) {
+      // Floating: Transparent or Scaffold Color to show floating effect
+      systemBarColor = scaffoldColor;
+    } else {
+      // Fixed: Must match Navbar Color exactly
+      systemBarColor = backgroundColor;
+    }
+
+    // Determine icon brightness based on the bar color
+    if (ThemeData.estimateBrightnessForColor(systemBarColor) ==
+        Brightness.dark) {
+      systemIconBrightness = Brightness.light;
+    } else {
+      systemIconBrightness = Brightness.dark;
+    }
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        systemNavigationBarColor: systemBarColor,
+        systemNavigationBarIconBrightness: systemIconBrightness,
+        statusBarColor: Colors.transparent, // Optional
+      ),
     );
   }
 }
