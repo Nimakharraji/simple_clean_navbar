@@ -1,6 +1,6 @@
 name: simple_clean_navbar
 description: The ultimate customizable bottom navigation bar for Flutter. Supports Floating, Side Rail, RTL, Dark Mode, Animations, and Immersive System UI.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/Nimakharraji/simple_clean_navbar
 repository: https://github.com/Nimakharraji/simple_clean_navbar
 

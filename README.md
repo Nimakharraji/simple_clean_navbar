@@ -4,35 +4,35 @@
 # Simple Clean NavBar
 
 **The Ultimate Navigation Bar for Flutter.** Simple, animated, responsive, and highly customizable.
-Version 1.0.1 introduces **Floating Mode**, **Side Rail support**, **3 Animation types**, and **Immersive System UI** integration.
+Version 1.0.2 introduces **Floating Mode**, **Side Rail support**, **3 Animation types**, and **Immersive System UI** integration.
 
 Designed to look clean on phones, tablets, and the web, automatically handling **RTL** (Persian/Arabic) and **Dark Mode**.
 
-![Demo Preview](https://raw.githubusercontent.com/Nimakharraji/simple_clean_navbar/ScreenShots/preview.jpg)
+![Demo Preview](https://raw.githubusercontent.com/Nimakharraji/simple_clean_navbar/main/ScreenShots/preview.jpg)
 
 
 ## ✨ Features
 
-* ** 🎈 Floating & Fixed Modes: Switch between a modern floating design or a classic fixed bar.
+* 🎈 Floating & Fixed Modes: Switch between a modern floating design or a classic fixed bar.
 
-* ** 📐 Fully Responsive: Automatically adapts to a Bottom Bar (Mobile) or a vertical Side Rail (Tablet/Web).
+* 📐 Fully Responsive: Automatically adapts to a Bottom Bar (Mobile) or a vertical Side Rail (Tablet/Web).
 
-* ** 🎨 3 Animation Types: Choose between Circle, Zoom, and Float (Jump) animations.
+* 🎨 3 Animation Types: Choose between Circle, Zoom, and Float (Jump) animations.
 
-* ** 📝 Smart Text Modes: Control labels with onSelect, alwaysShow, or neverShow.
+* 📝 Smart Text Modes: Control labels with onSelect, alwaysShow, or neverShow.
 
-* ** 📱 Immersive UI: Automatically matches the Android System Navigation Bar color with your navbar.
+* 📱 Immersive UI: Automatically matches the Android System Navigation Bar color with your navbar.
 
-* ** 🌓 Theme Aware: Seamless support for Dark and Light modes.
+* 🌓 Theme Aware: Seamless support for Dark and Light modes.
 
-* ** 🌍 RTL Support: Built-in support for Right-to-Left languages.
+* 🌍 RTL Support: Built-in support for Right-to-Left languages.
 
 ## 📦 Installation
 
 Add this to your pubspec.yaml:
 ```
 dependencies:
-  simple_clean_navbar: ^1.0.0
+  simple_clean_navbar: ^1.0.2
 ```
 
 ## 🚀 Usage
