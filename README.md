@@ -4,7 +4,7 @@
 # Simple Clean NavBar
 
 **The Ultimate Navigation Bar for Flutter.** Simple, animated, responsive, and highly customizable.
-Version 1.0.0 introduces **Floating Mode**, **Side Rail support**, **3 Animation types**, and **Immersive System UI** integration.
+Version 1.0.1 introduces **Floating Mode**, **Side Rail support**, **3 Animation types**, and **Immersive System UI** integration.
 
 Designed to look clean on phones, tablets, and the web, automatically handling **RTL** (Persian/Arabic) and **Dark Mode**.
 
