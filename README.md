@@ -11,23 +11,23 @@ Designed to look clean on phones, tablets, and the web, automatically handling *
 ![Demo Preview](https://raw.githubusercontent.com/Nimakharraji/simple_clean_navbar/ScreenShots/preview.jpg)
 
 
-##✨ Features
+## ✨ Features
 
-* **🎈 Floating & Fixed Modes: Switch between a modern floating design or a classic fixed bar.
+* ** 🎈 Floating & Fixed Modes: Switch between a modern floating design or a classic fixed bar.
 
-* **📐 Fully Responsive: Automatically adapts to a Bottom Bar (Mobile) or a vertical Side Rail (Tablet/Web).
+* ** 📐 Fully Responsive: Automatically adapts to a Bottom Bar (Mobile) or a vertical Side Rail (Tablet/Web).
 
-* **🎨 3 Animation Types: Choose between Circle, Zoom, and Float (Jump) animations.
+* ** 🎨 3 Animation Types: Choose between Circle, Zoom, and Float (Jump) animations.
 
-* **📝 Smart Text Modes: Control labels with onSelect, alwaysShow, or neverShow.
+* ** 📝 Smart Text Modes: Control labels with onSelect, alwaysShow, or neverShow.
 
-* **📱 Immersive UI: Automatically matches the Android System Navigation Bar color with your navbar.
+* ** 📱 Immersive UI: Automatically matches the Android System Navigation Bar color with your navbar.
 
-* **🌓 Theme Aware: Seamless support for Dark and Light modes.
+* ** 🌓 Theme Aware: Seamless support for Dark and Light modes.
 
-* **🌍 RTL Support: Built-in support for Right-to-Left languages.
+* ** 🌍 RTL Support: Built-in support for Right-to-Left languages.
 
-##📦 Installation
+## 📦 Installation
 
 Add this to your pubspec.yaml:
 ```
@@ -35,7 +35,7 @@ dependencies:
   simple_clean_navbar: ^1.0.0
 ```
 
-##🚀 Usage
+## 🚀 Usage
 ```
 1. Minimal Example
 
@@ -87,7 +87,7 @@ SimpleCleanNavBar(
 )
 ```
 
-##📱 Responsive Layout Guide (Phone vs Tablet)
+## 📱 Responsive Layout Guide (Phone vs Tablet)
 
 One of the best features of simple_clean_navbar is the ability to transform from a Bottom Bar to a Side Rail.
 
@@ -130,7 +130,7 @@ Widget build(BuildContext context) {
 }
 ```
 
-##❤️ Support
+## ❤️ Support
 
 If you find this package useful, please give it a generic Like on pub.dev and a ⭐️ on GitHub.
 
